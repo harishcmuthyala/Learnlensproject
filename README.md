@@ -1,4 +1,4 @@
-# LearnLens MVP - Complete Implementation
+# Main Page Design - LearnLens MVP
 
 Transform documents into interactive video playlists with AI-powered content generation.
 
@@ -25,15 +25,18 @@ Transform documents into interactive video playlists with AI-powered content gen
 ## 🛠️ Tech Stack
 
 **Frontend:**
-- React 18 + TypeScript + Vite
+- React 18 + Vite
 - Tailwind CSS + Radix UI components
-- Motion (Framer Motion) for animations
+- Motion for animations
 - Lucide React icons
+- Comprehensive UI component library
 
 **Backend:**
 - FastAPI with async support
 - Google Gemini AI for outline generation
 - Google Veo for video generation
+- PyPDF2 for PDF processing
+- python-docx for Word documents
 - In-memory storage (replace with database)
 
 ## 🚀 Quick Start
@@ -44,13 +47,19 @@ Transform documents into interactive video playlists with AI-powered content gen
 - Gemini API key
 - Veo API key (optional for demo)
 
-### Frontend Setup
+### Setup
 ```bash
+# Install frontend dependencies
 npm install
+
+# Start frontend
 npm run dev
+
+# Start backend (in separate terminal)
+npm run backend
 ```
 
-### Backend Setup
+### Manual Backend Setup
 ```bash
 cd backend
 pip install -r requirements.txt
@@ -67,6 +76,13 @@ python main.py
 ```
 ├── src/
 │   ├── components/
+│   │   ├── ui/                        # Radix UI components
+│   │   ├── figma/                     # Figma components
+│   │   ├── HeroSection.tsx            # Landing page hero
+│   │   ├── FeaturesSection.tsx        # Features showcase
+│   │   ├── HowItWorksSection.tsx      # Process explanation
+│   │   ├── Navigation.tsx             # Site navigation
+│   │   ├── SampleVideosSection.tsx    # Video samples
 │   │   ├── ProcessingDashboard.tsx    # Main dashboard
 │   │   ├── SubscriptionModal.tsx      # Premium upgrade
 │   │   ├── VideoPlayer.tsx            # Video playback
@@ -76,8 +92,12 @@ python main.py
 │   │   └── api.ts                     # Backend integration
 │   ├── types/
 │   │   └── index.ts                   # TypeScript interfaces
-│   └── hooks/
-│       └── useTheme.ts                # Theme management
+│   ├── hooks/
+│   │   └── useTheme.ts                # Theme management
+│   ├── styles/
+│   │   └── globals.css                # Global styles
+│   └── guidelines/
+│       └── Guidelines.md              # Design guidelines
 ├── backend/
 │   ├── main.py                        # FastAPI server
 │   ├── requirements.txt               # Python dependencies
@@ -118,11 +138,21 @@ VEO_API_KEY=your_veo_api_key
 
 ## 🎨 UI Components
 
-- **ProcessingDashboard** - Shows document outline with video status
+### Main Components
+- **HeroSection** - Landing page hero with call-to-action
+- **FeaturesSection** - Feature highlights and benefits
+- **HowItWorksSection** - Step-by-step process explanation
+- **Navigation** - Site navigation with theme toggle
+- **SampleVideosSection** - Showcase of generated videos
+- **ProcessingDashboard** - Document outline with video status
 - **SubscriptionModal** - Premium upgrade with pricing
 - **VideoPlayer** - Custom video player with controls
-- **ThemeToggle** - Dark/light mode switcher
 - **UploadSection** - Enhanced file upload with progress
+
+### UI Library
+- Complete Radix UI component set (40+ components)
+- Custom styled components with Tailwind CSS
+- Responsive design patterns
 
 ## 🚀 Deployment
 
