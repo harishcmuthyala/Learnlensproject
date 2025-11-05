@@ -1,16 +1,19 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Upload, FileText, X, CheckCircle, Loader2 } from 'lucide-react';
+import { Upload, FileText, X, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';
 import { Card } from './ui/card';
-
-type UploadState = 'idle' | 'uploading' | 'processing' | 'complete';
+import { ProcessingDashboard } from './ProcessingDashboard';
+import { SubscriptionModal } from './SubscriptionModal';
+import { apiService } from '../services/api';
+import { ProcessingStatus } from '../types';
 
 interface UploadedFile {
   name: string;
   size: number;
   type: string;
+  file: File;
 }
 
 interface UploadSectionProps {
@@ -18,42 +21,64 @@ interface UploadSectionProps {
 }
 
 export function UploadSection({ onComplete }: UploadSectionProps) {
-  const [uploadState, setUploadState] = useState<UploadState>('idle');
+  const [uploadState, setUploadState] = useState<ProcessingStatus | 'idle'>('idle');
   const [uploadedFile, setUploadedFile] = useState<UploadedFile | null>(null);
   const [progress, setProgress] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [documentId, setDocumentId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [showSubscription, setShowSubscription] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileSelect = (file: File) => {
+  const handleFileSelect = async (file: File) => {
     if (!file) return;
 
+    // Validate file type
+    const allowedTypes = ['application/pdf', 'text/plain', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    if (!allowedTypes.includes(file.type)) {
+      setError('Please upload a PDF, DOC, DOCX, or TXT file');
+      return;
+    }
+
+    // Validate file size (10MB limit)
+    if (file.size > 10 * 1024 * 1024) {
+      setError('File size must be less than 10MB');
+      return;
+    }
+
+    setError(null);
     setUploadedFile({
       name: file.name,
       size: file.size,
       type: file.type,
+      file,
     });
 
-    // Simulate upload
-    setUploadState('uploading');
-    setProgress(0);
+    try {
+      setUploadState('uploading');
+      setProgress(0);
 
-    const uploadInterval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(uploadInterval);
-          setUploadState('processing');
-          
-          // Simulate processing
-          setTimeout(() => {
-            setUploadState('complete');
-            onComplete?.();
-          }, 3000);
-          
-          return 100;
-        }
-        return prev + 10;
-      });
-    }, 200);
+      // Simulate upload progress
+      const progressInterval = setInterval(() => {
+        setProgress(prev => Math.min(prev + 10, 90));
+      }, 100);
+
+      const response = await apiService.uploadDocument(file);
+      
+      clearInterval(progressInterval);
+      setProgress(100);
+      
+      setTimeout(() => {
+        setUploadState('complete');
+        setDocumentId(response.documentId);
+        onComplete?.();
+      }, 500);
+      
+    } catch (error) {
+      setError('Upload failed. Please try again.');
+      setUploadState('idle');
+      setProgress(0);
+    }
   };
 
   const handleDrop = (e: React.DragEvent) => {
@@ -86,10 +111,36 @@ export function UploadSection({ onComplete }: UploadSectionProps) {
     setUploadState('idle');
     setUploadedFile(null);
     setProgress(0);
+    setDocumentId(null);
+    setError(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
   };
+
+  const handleSubscribe = (plan: 'monthly' | 'yearly') => {
+    // Integrate with payment processor
+    console.log('Subscribing to:', plan);
+    setShowSubscription(false);
+    // Redirect to payment or handle subscription logic
+  };
+
+  // Show dashboard if document is uploaded
+  if (documentId && uploadState === 'complete') {
+    return (
+      <>
+        <ProcessingDashboard 
+          documentId={documentId} 
+          onSubscribe={() => setShowSubscription(true)}
+        />
+        <SubscriptionModal
+          isOpen={showSubscription}
+          onClose={() => setShowSubscription(false)}
+          onSubscribe={handleSubscribe}
+        />
+      </>
+    );
+  }
 
   return (
     <section className="min-h-screen flex items-center justify-center py-20 bg-gradient-to-br from-purple-50 via-white to-blue-50">
@@ -139,6 +190,17 @@ export function UploadSection({ onComplete }: UploadSectionProps) {
                   onChange={handleFileInputChange}
                   className="hidden"
                 />
+
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center gap-2 text-red-600 text-sm mb-4"
+                  >
+                    <AlertCircle size={16} />
+                    {error}
+                  </motion.div>
+                )}
 
                 <div className="text-center">
                   <motion.div
@@ -224,11 +286,11 @@ export function UploadSection({ onComplete }: UploadSectionProps) {
                   </>
                 )}
 
-                {uploadState === 'processing' && (
+                {uploadState === 'analyzing' && (
                   <div className="space-y-4">
                     <div className="flex items-center gap-3 text-purple-600">
                       <Loader2 className="animate-spin" size={20} />
-                      <span>Analyzing document and generating playlist...</span>
+                      <span>Analyzing document with AI...</span>
                     </div>
                     
                     <div className="space-y-2 text-sm text-gray-600">
@@ -247,17 +309,32 @@ export function UploadSection({ onComplete }: UploadSectionProps) {
                         transition={{ delay: 1 }}
                         className="flex items-center gap-2"
                       >
-                        <CheckCircle size={16} className="text-green-600" />
-                        <span>Extracting content and structure</span>
-                      </motion.div>
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 1.5 }}
-                        className="flex items-center gap-2"
-                      >
                         <Loader2 size={16} className="animate-spin text-purple-600" />
-                        <span>Generating video playlist...</span>
+                        <span>Extracting content and creating outline...</span>
+                      </motion.div>
+                    </div>
+                  </div>
+                )}
+
+                {uploadState === 'generating' && (
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 text-purple-600">
+                      <Loader2 className="animate-spin" size={20} />
+                      <span>Generating your first video...</span>
+                    </div>
+                    
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <motion.div className="flex items-center gap-2">
+                        <CheckCircle size={16} className="text-green-600" />
+                        <span>Document analyzed</span>
+                      </motion.div>
+                      <motion.div className="flex items-center gap-2">
+                        <CheckCircle size={16} className="text-green-600" />
+                        <span>Topics identified</span>
+                      </motion.div>
+                      <motion.div className="flex items-center gap-2">
+                        <Loader2 size={16} className="animate-spin text-purple-600" />
+                        <span>Creating video content...</span>
                       </motion.div>
                     </div>
                   </div>
