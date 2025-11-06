@@ -125,7 +125,7 @@ export function FeaturesSection() {
                 </svg>
               </div>
               <blockquote className="mb-6">
-                "LearnLens has completely transformed how I study. Converting my textbooks into 
+                "Pius AI has completely transformed how I study. Converting my textbooks into 
                 video playlists has saved me countless hours and improved my retention by 40%. 
                 It's like having a personal tutor available 24/7."
               </blockquote>

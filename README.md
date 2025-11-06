@@ -1,4 +1,4 @@
-# Main Page Design - LearnLens MVP
+# Main Page Design - Pius AI MVP
 
 Transform documents into interactive video playlists with AI-powered content generation.
 

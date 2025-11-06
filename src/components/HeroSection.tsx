@@ -69,7 +69,7 @@ export function HeroSection({ onGetStarted }: HeroSectionProps) {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-gray-600 max-w-lg"
             >
-              Upload any PDF or text document and watch as LearnLens automatically 
+              Upload any PDF or text document and watch as Pius AI automatically 
               converts it into engaging, structured video playlists. Learn smarter, 
               not harder with interactive progress tracking.
             </motion.p>

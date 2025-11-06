@@ -44,9 +44,9 @@ export function Navigation({ currentSection, onNavigate }: NavigationProps) {
             onClick={() => onNavigate('home')}
           >
             <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white">LL</span>
+              <span className="text-white">Pius</span>
             </div>
-            <span className="text-xl text-gray-900">LearnLens</span>
+            <span className="text-xl text-gray-900">AI</span>
           </motion.div>
 
           {/* Desktop Navigation */}

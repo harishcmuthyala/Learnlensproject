@@ -89,9 +89,9 @@ export default function App() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
-                  <span className="text-sm">LL</span>
+                  <span className="text-sm">Pius</span>
                 </div>
-                <span>LearnLens</span>
+                <span>AI</span>
               </div>
               <p className="text-gray-400 text-sm">
                 Transform documents into interactive video playlists for better learning.
@@ -130,7 +130,7 @@ export default function App() {
           </div>
 
           <div className="pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
-            <p>&copy; {new Date().getFullYear()} LearnLens. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Pius AI. All rights reserved.</p>
           </div>
         </div>
       </footer>

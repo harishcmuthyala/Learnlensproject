@@ -49,7 +49,7 @@ export function SampleVideosSection() {
             Sample Playlists
           </div>
           <h2 className="text-gray-900 mb-4">
-            See LearnLens in Action
+            See Pius AI in Action
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             Explore sample video playlists generated from real documents. 

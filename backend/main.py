@@ -12,13 +12,17 @@ import os
 from pathlib import Path
 import PyPDF2
 import io
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 try:
     from docx import Document
 except ImportError:
     Document = None
 
 # Initialize FastAPI app
-app = FastAPI(title="LearnLens API", version="1.0.0")
+app = FastAPI(title="Pius AI API", version="1.0.0")
 
 # CORS middleware
 app.add_middleware(
