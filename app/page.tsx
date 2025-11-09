@@ -87,14 +87,9 @@ export default function Page() {
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8 items-start">
             <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                  <span className="text-sm text-white font-bold">P</span>
-                </div>
-                <span className="font-semibold text-black">Pius AI</span>
-              </div>
+              <h4 className="mb-4 font-semibold text-black">Pius AI</h4>
               <p className="text-gray-600 text-sm">
                 Transform documents into interactive video playlists for better learning.
               </p>

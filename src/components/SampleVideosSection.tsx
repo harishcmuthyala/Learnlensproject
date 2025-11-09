@@ -92,7 +92,7 @@ export function SampleVideosSection() {
 
                 {/* Content */}
                 <div className="p-4">
-                  <h3 className="text-black mb-3 font-semibold line-clamp-2">
+                  <h3 className="!text-sm text-black mb-3 font-semibold line-clamp-2 !font-sans !leading-normal">
                     {video.title}
                   </h3>
 
