@@ -447,12 +447,12 @@ async def simulate_video_generation(video_id: str, title: str, content: str):
         
         # operation = client.models.generate_videos(model="veo-2.0-generate-001", prompt=veo_prompt)
         
-        # Update video status
+        # Update video status with your Google Drive video
         videos[video_id].update({
             "status": "ready",
-            "url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",  # Demo video
-            "duration": 180,  # 3 minutes
-            "thumbnail": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+            "url": "https://piusai-demos.s3.us-east-1.amazonaws.com/tree.mp4",
+            "duration": 180,
+            "thumbnail": "https://i.imgur.com/Zq4VYhF.jpg",
             "script": script
         })
         

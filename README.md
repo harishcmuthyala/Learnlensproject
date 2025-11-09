@@ -133,7 +133,6 @@ VITE_API_URL=http://localhost:8000
 **Backend (backend/.env):**
 ```
 GEMINI_API_KEY=your_gemini_api_key
-VEO_API_KEY=your_veo_api_key
 ```
 
 ## 🎨 UI Components
