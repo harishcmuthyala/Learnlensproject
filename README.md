@@ -25,16 +25,16 @@ Transform documents into interactive video playlists with AI-powered content gen
 ## 🛠️ Tech Stack
 
 **Frontend:**
-- React 18 + Vite
+- Next.js 16 (App Router)
 - Tailwind CSS + Radix UI components
-- Motion for animations
+- Next Themes for dark/light mode
 - Lucide React icons
 - Comprehensive UI component library
 
 **Backend:**
 - FastAPI with async support
 - Google Gemini AI for outline generation
-- Google Veo for video generation
+- Simulated video generation (Veo integration ready)
 - PyPDF2 for PDF processing
 - python-docx for Word documents
 - In-memory storage (replace with database)
@@ -45,14 +45,13 @@ Transform documents into interactive video playlists with AI-powered content gen
 - Node.js 18+
 - Python 3.8+
 - Gemini API key
-- Veo API key (optional for demo)
 
 ### Setup
 ```bash
 # Install frontend dependencies
 npm install
 
-# Start frontend
+# Start Next.js frontend
 npm run dev
 
 # Start backend (in separate terminal)
@@ -74,9 +73,13 @@ python main.py
 ## 📁 Project Structure
 
 ```
+├── app/
+│   ├── layout.tsx                     # Next.js root layout
+│   ├── page.tsx                       # Main page
+│   └── globals.css                    # Global styles
 ├── src/
 │   ├── components/
-│   │   ├── ui/                        # Radix UI components
+│   │   ├── ui/                        # Radix UI components (40+)
 │   │   ├── figma/                     # Figma components
 │   │   ├── HeroSection.tsx            # Landing page hero
 │   │   ├── FeaturesSection.tsx        # Features showcase
@@ -94,14 +97,14 @@ python main.py
 │   │   └── index.ts                   # TypeScript interfaces
 │   ├── hooks/
 │   │   └── useTheme.ts                # Theme management
-│   ├── styles/
-│   │   └── globals.css                # Global styles
 │   └── guidelines/
 │       └── Guidelines.md              # Design guidelines
 ├── backend/
 │   ├── main.py                        # FastAPI server
 │   ├── requirements.txt               # Python dependencies
 │   └── .env.example                   # Environment template
+├── next.config.ts                     # Next.js configuration
+└── tailwind.config.ts                 # Tailwind configuration
 ```
 
 ## 🔄 User Flow
@@ -124,11 +127,6 @@ python main.py
 ## 🔧 Configuration
 
 ### Environment Variables
-
-**Frontend (.env):**
-```
-VITE_API_URL=http://localhost:8000
-```
 
 **Backend (backend/.env):**
 ```
@@ -158,7 +156,7 @@ GEMINI_API_KEY=your_gemini_api_key
 ### Frontend (Vercel)
 ```bash
 npm run build
-# Deploy dist/ folder to Vercel
+# Deploy build/ folder to Vercel
 ```
 
 ### Backend (Railway/Heroku)

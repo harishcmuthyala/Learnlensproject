@@ -1,9 +1,27 @@
 import { DocumentOutline, UploadResponse, Video } from '../types';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK === 'true';
 
 class ApiService {
   async uploadDocument(file: File): Promise<UploadResponse> {
+    if (USE_MOCK) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      return {
+        documentId: 'demo-doc-123',
+        outline: {
+          id: 'demo-outline-123',
+          title: file.name.replace(/\.[^/.]+$/, ''),
+          topics: [
+            { id: 'topic-1', title: 'Introduction', description: 'Overview and basics', order: 0, isPremium: false, video: null },
+            { id: 'topic-2', title: 'Core Concepts', description: 'Main principles', order: 1, isPremium: true, video: null },
+            { id: 'topic-3', title: 'Advanced Topics', description: 'Deep dive', order: 2, isPremium: true, video: null }
+          ],
+          createdAt: new Date().toISOString()
+        }
+      };
+    }
+
     const formData = new FormData();
     formData.append('file', file);
 
@@ -20,6 +38,20 @@ class ApiService {
   }
 
   async getDocumentStatus(documentId: string): Promise<DocumentOutline> {
+    if (USE_MOCK) {
+      return {
+        id: 'demo-outline-123',
+        title: 'Demo Document',
+        topics: [
+          { id: 'topic-1', title: 'Introduction', description: 'Overview and basics', order: 0, isPremium: false, 
+            video: { id: 'video-1', status: 'ready', url: 'https://piusai-demos.s3.us-east-1.amazonaws.com/tree.mp4', duration: 180, thumbnail: 'https://i.imgur.com/Zq4VYhF.jpg' } },
+          { id: 'topic-2', title: 'Core Concepts', description: 'Main principles', order: 1, isPremium: true, video: null },
+          { id: 'topic-3', title: 'Advanced Topics', description: 'Deep dive', order: 2, isPremium: true, video: null }
+        ],
+        createdAt: new Date().toISOString()
+      };
+    }
+
     const response = await fetch(`${API_BASE}/documents/${documentId}`);
     
     if (!response.ok) {
@@ -30,6 +62,16 @@ class ApiService {
   }
 
   async getVideoStatus(videoId: string): Promise<Video> {
+    if (USE_MOCK) {
+      return {
+        id: videoId,
+        status: 'ready',
+        url: 'https://piusai-demos.s3.us-east-1.amazonaws.com/tree.mp4',
+        duration: 180,
+        thumbnail: 'https://i.imgur.com/Zq4VYhF.jpg'
+      };
+    }
+
     const response = await fetch(`${API_BASE}/videos/${videoId}`);
     
     if (!response.ok) {
@@ -40,6 +82,11 @@ class ApiService {
   }
 
   async generateVideo(topicId: string): Promise<{ videoId: string }> {
+    if (USE_MOCK) {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      return { videoId: `video-${topicId}` };
+    }
+
     const response = await fetch(`${API_BASE}/generate-video`, {
       method: 'POST',
       headers: {
@@ -56,6 +103,10 @@ class ApiService {
   }
 
   async checkSubscription(): Promise<{ isPremium: boolean }> {
+    if (USE_MOCK) {
+      return { isPremium: false };
+    }
+
     const response = await fetch(`${API_BASE}/subscription`);
     
     if (!response.ok) {
