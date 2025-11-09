@@ -188,7 +188,7 @@ function TopicCard({ topic, index, isPremium, onGenerate, onSubscribe, onWatchVi
 
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <h3 className="font-semibold text-gray-900">{topic.title}</h3>
+              <h3 className="!text-sm font-semibold text-gray-900 !font-sans !leading-normal">{topic.title}</h3>
               {topic.isPremium && !isFirstTopic && (
                 <Badge variant="secondary" className="text-xs">
                   <Lock size={10} className="mr-1" />

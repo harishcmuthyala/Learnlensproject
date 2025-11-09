@@ -41,20 +41,20 @@ export function SampleVideosSection() {
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           className="text-center mb-16"
         >
-          <div className="inline-block px-4 py-2 bg-green-100 rounded-full text-green-700 mb-4">
+          <div className="inline-block px-4 py-2 border border-black rounded-full text-black font-medium mb-4">
             Sample Playlists
           </div>
-          <h2 className="text-gray-900 mb-4">
+          <h2 className="text-black mb-4">
             See Pius AI in Action
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Explore sample video playlists generated from real documents. 
+            Explore sample video playlists generated from real documents.
             Click on any video to see the interactive learning interface.
           </p>
         </motion.div>
@@ -63,47 +63,39 @@ export function SampleVideosSection() {
           {sampleVideos.map((video, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
             >
-              <Card className="overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300">
+              <Card className="overflow-hidden group cursor-pointer">
                 {/* Thumbnail */}
                 <div className="relative aspect-video overflow-hidden bg-gray-200">
                   <ImageWithFallback
                     src={video.thumbnail}
                     alt={video.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover"
                   />
-                  
+
                   {/* Play Button Overlay */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileHover={{ opacity: 1, scale: 1 }}
-                    className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.2 }}
-                      transition={{ type: 'spring', stiffness: 400 }}
-                      className="w-16 h-16 bg-white rounded-full flex items-center justify-center"
-                    >
-                      <Play className="text-purple-600 ml-1" size={28} fill="currentColor" />
-                    </motion.div>
-                  </motion.div>
+                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
+                      <Play className="text-black ml-1" size={28} fill="currentColor" />
+                    </div>
+                  </div>
 
                   {/* Category Badge */}
-                  <div className="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs text-gray-900">
+                  <div className="absolute top-3 left-3 px-3 py-1 bg-white rounded-full text-xs font-medium text-black border border-gray-200">
                     {video.category}
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-4">
-                  <h3 className="text-gray-900 mb-3 group-hover:text-purple-600 transition-colors line-clamp-2">
+                  <h3 className="text-black mb-3 font-semibold line-clamp-2">
                     {video.title}
                   </h3>
-                  
+
                   <div className="flex items-center justify-between text-sm text-gray-600">
                     <div className="flex items-center gap-1">
                       <Clock size={14} />
@@ -121,8 +113,8 @@ export function SampleVideosSection() {
                       initial={{ width: 0 }}
                       whileInView={{ width: `${Math.random() * 60 + 20}%` }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                      className="h-full bg-gradient-to-r from-purple-600 to-blue-600"
+                      transition={{ duration: 0.8, delay: 0.3 + index * 0.05 }}
+                      className="h-full bg-black"
                     />
                   </div>
                 </div>
@@ -133,13 +125,13 @@ export function SampleVideosSection() {
 
         {/* Show More Button */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.4, delay: 0.3 }}
           className="text-center mt-12"
         >
-          <button className="text-purple-600 hover:text-purple-700 transition-colors">
+          <button className="text-black hover:text-gray-600 transition-colors font-medium">
             View All Sample Playlists →
           </button>
         </motion.div>

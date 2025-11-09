@@ -30,10 +30,10 @@ export function Navigation({ currentSection, onNavigate }: NavigationProps) {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/80 backdrop-blur-lg shadow-md' : 'bg-transparent'
+        isScrolled ? 'bg-white border-b border-gray-200' : 'bg-white'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,46 +41,36 @@ export function Navigation({ currentSection, onNavigate }: NavigationProps) {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.1 }}
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => onNavigate('home')}
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white">Pius</span>
+            <div className="w-10 h-10 bg-black rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">P</span>
             </div>
-            <span className="text-xl text-gray-900">AI</span>
+            <span className="text-xl font-semibold text-black">Pius AI</span>
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item, index) => (
-              <motion.button
+            {navItems.map((item) => (
+              <button
                 key={item.id}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
                 onClick={() => onNavigate(item.id)}
-                className={`transition-colors ${
+                className={`transition-colors font-medium ${
                   currentSection === item.id
-                    ? 'text-purple-600'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'text-black border-b-2 border-black pb-1'
+                    : 'text-gray-600 hover:text-black'
                 }`}
               >
                 {item.label}
-              </motion.button>
+              </button>
             ))}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+            <Button
+              onClick={() => onNavigate('upload')}
             >
-              <Button
-                onClick={() => onNavigate('upload')}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
-              >
-                Get Started
-              </Button>
-            </motion.div>
+              Get Started
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -111,7 +101,7 @@ export function Navigation({ currentSection, onNavigate }: NavigationProps) {
                   }}
                   className={`block w-full text-left py-3 px-4 rounded-lg transition-all min-h-[44px] font-medium ${
                     currentSection === item.id
-                      ? 'bg-purple-100 text-purple-600'
+                      ? 'bg-black text-white'
                       : 'text-gray-600 hover:bg-gray-100 active:bg-gray-200'
                   }`}
                 >
@@ -124,7 +114,7 @@ export function Navigation({ currentSection, onNavigate }: NavigationProps) {
                   onNavigate('upload');
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 min-h-[44px]"
+                className="w-full min-h-[44px]"
               >
                 Get Started
               </Button>
