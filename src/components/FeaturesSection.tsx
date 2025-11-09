@@ -66,11 +66,11 @@ export function FeaturesSection() {
           <div className="inline-block px-4 py-2 bg-purple-100 rounded-full text-purple-700 mb-4">
             Features
           </div>
-          <h2 className="text-gray-900 mb-4">
+          <h2 className="text-gray-900 mb-4 font-display">
             Everything You Need for Effective Learning
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Powerful features designed to transform your documents into engaging, 
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Powerful features designed to transform your documents into engaging,
             interactive learning experiences.
           </p>
         </motion.div>
@@ -111,7 +111,7 @@ export function FeaturesSection() {
           })}
         </div>
 
-        {/* Testimonial Section */}
+        {/* Call to Action Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -121,19 +121,20 @@ export function FeaturesSection() {
         >
           <div className="bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl p-8 md:p-12 text-white">
             <div className="max-w-3xl mx-auto text-center">
-              <div className="mb-6">
-                <svg className="w-12 h-12 mx-auto opacity-50" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-              </div>
-              <blockquote className="mb-6">
-                "Pius AI has completely transformed how I study. Converting my textbooks into 
-                video playlists has saved me countless hours and improved my retention by 40%. 
-                It's like having a personal tutor available 24/7."
-              </blockquote>
-              <div>
-                <div>Sarah Johnson</div>
-                <div className="text-purple-200 text-sm">Medical Student, Harvard University</div>
+              <h3 className="text-3xl font-display font-bold mb-4">
+                Ready to Transform Your Learning?
+              </h3>
+              <p className="text-lg text-purple-100 mb-8">
+                Join students and professionals who are revolutionizing how they consume educational content.
+                Upload your first document and experience AI-powered learning today.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button className="px-8 py-3 bg-white text-purple-600 rounded-lg font-medium hover:bg-purple-50 transition-colors shadow-lg hover:shadow-xl active:scale-95 transform duration-200">
+                  Get Started Free
+                </button>
+                <button className="px-8 py-3 bg-purple-700/50 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors border-2 border-white/20 hover:border-white/40 active:scale-95 transform duration-200">
+                  Learn More
+                </button>
               </div>
             </div>
           </div>

@@ -85,8 +85,9 @@ export function Navigation({ currentSection, onNavigate }: NavigationProps) {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-900"
+            className="md:hidden text-gray-900 p-2 hover:bg-gray-100 rounded-lg transition-colors active:scale-95"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -108,21 +109,22 @@ export function Navigation({ currentSection, onNavigate }: NavigationProps) {
                     onNavigate(item.id);
                     setIsMobileMenuOpen(false);
                   }}
-                  className={`block w-full text-left py-2 px-4 rounded-lg transition-colors ${
+                  className={`block w-full text-left py-3 px-4 rounded-lg transition-all min-h-[44px] font-medium ${
                     currentSection === item.id
                       ? 'bg-purple-100 text-purple-600'
-                      : 'text-gray-600 hover:bg-gray-100'
+                      : 'text-gray-600 hover:bg-gray-100 active:bg-gray-200'
                   }`}
                 >
                   {item.label}
                 </button>
               ))}
               <Button
+                size="lg"
                 onClick={() => {
                   onNavigate('upload');
                   setIsMobileMenuOpen(false);
                 }}
-                className="w-full bg-gradient-to-r from-purple-600 to-blue-600"
+                className="w-full bg-gradient-to-r from-purple-600 to-blue-600 min-h-[44px]"
               >
                 Get Started
               </Button>

@@ -29,6 +29,16 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    /* Custom Brand Colors */
+    --purple-50: 270 100% 98%;
+    --purple-100: 269 100% 95%;
+    --purple-600: 271 81% 56%;
+    --purple-700: 271 76% 53%;
+    --blue-50: 214 100% 97%;
+    --blue-100: 214 95% 93%;
+    --blue-600: 217 91% 60%;
+    --blue-700: 217 89% 51%;
   }
 
   .dark {
@@ -113,5 +123,53 @@
 
   small {
     @apply text-sm;
+  }
+}
+
+@layer utilities {
+  /* Custom Gradients */
+  .gradient-primary {
+    @apply bg-gradient-to-r from-purple-600 to-blue-600;
+  }
+
+  .gradient-primary-hover {
+    @apply hover:from-purple-700 hover:to-blue-700;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent;
+  }
+
+  /* Glass Effect */
+  .glass {
+    @apply bg-white/80 backdrop-blur-lg;
+  }
+
+  .glass-dark {
+    @apply bg-gray-900/80 backdrop-blur-lg;
+  }
+
+  /* Smooth Transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  /* Shadow Levels */
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+  }
+
+  .shadow-glow-blue {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+  }
+
+  /* Accessibility - Better Focus States */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-600 focus-visible:ring-offset-2 rounded;
+  }
+
+  /* Skip to main content link for screen readers */
+  .skip-link {
+    @apply absolute -top-40 left-0 bg-purple-600 text-white px-4 py-2 z-[100] focus:top-0 transition-all;
   }
 }
