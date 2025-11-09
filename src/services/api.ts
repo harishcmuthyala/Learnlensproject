@@ -13,9 +13,9 @@ class ApiService {
           id: 'demo-outline-123',
           title: file.name.replace(/\.[^/.]+$/, ''),
           topics: [
-            { id: 'topic-1', title: 'Introduction', description: 'Overview and basics', order: 0, isPremium: false, video: null },
-            { id: 'topic-2', title: 'Core Concepts', description: 'Main principles', order: 1, isPremium: true, video: null },
-            { id: 'topic-3', title: 'Advanced Topics', description: 'Deep dive', order: 2, isPremium: true, video: null }
+            { id: 'topic-1', title: 'Introduction', description: 'Overview and basics', order: 0, isPremium: false },
+            { id: 'topic-2', title: 'Core Concepts', description: 'Main principles', order: 1, isPremium: true },
+            { id: 'topic-3', title: 'Advanced Topics', description: 'Deep dive', order: 2, isPremium: true }
           ],
           createdAt: new Date().toISOString()
         }
@@ -45,8 +45,8 @@ class ApiService {
         topics: [
           { id: 'topic-1', title: 'Introduction', description: 'Overview and basics', order: 0, isPremium: false, 
             video: { id: 'video-1', status: 'ready', url: 'https://piusai-demos.s3.us-east-1.amazonaws.com/tree.mp4', duration: 180, thumbnail: 'https://i.imgur.com/Zq4VYhF.jpg' } },
-          { id: 'topic-2', title: 'Core Concepts', description: 'Main principles', order: 1, isPremium: true, video: null },
-          { id: 'topic-3', title: 'Advanced Topics', description: 'Deep dive', order: 2, isPremium: true, video: null }
+          { id: 'topic-2', title: 'Core Concepts', description: 'Main principles', order: 1, isPremium: true },
+          { id: 'topic-3', title: 'Advanced Topics', description: 'Deep dive', order: 2, isPremium: true }
         ],
         createdAt: new Date().toISOString()
       };
