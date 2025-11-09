@@ -60,7 +60,7 @@ export function HeroSection({ onGetStarted }: HeroSectionProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-gray-900"
+              className="text-gray-900 font-display"
             >
               Transform Documents into Interactive Video Playlists
             </motion.h1>
@@ -69,11 +69,11 @@ export function HeroSection({ onGetStarted }: HeroSectionProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-gray-600 max-w-lg"
+              className="text-lg text-gray-600 max-w-lg leading-relaxed"
             >
-              Upload any PDF or text document and watch as Pius AI automatically 
-              converts it into engaging, structured video playlists. Learn smarter, 
-              not harder with interactive progress tracking.
+              Upload any PDF or text document and watch as Pius AI automatically
+              converts it into engaging, structured video playlists. Learn smarter,
+              not harder with AI-powered interactive learning.
             </motion.p>
 
             <motion.div
@@ -101,24 +101,30 @@ export function HeroSection({ onGetStarted }: HeroSectionProps) {
               </Button>
             </motion.div>
 
-            {/* Stats */}
+            {/* Features Highlight */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex gap-8 pt-8 border-t border-gray-200"
+              className="flex flex-wrap gap-6 pt-8 border-t border-gray-200"
             >
-              <div>
-                <div className="text-purple-600">10K+</div>
-                <div className="text-sm text-gray-600">Documents Processed</div>
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>AI-Powered</span>
               </div>
-              <div>
-                <div className="text-purple-600">50K+</div>
-                <div className="text-sm text-gray-600">Videos Generated</div>
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Instant Processing</span>
               </div>
-              <div>
-                <div className="text-purple-600">95%</div>
-                <div className="text-sm text-gray-600">User Satisfaction</div>
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Interactive Playlists</span>
               </div>
             </motion.div>
           </div>
