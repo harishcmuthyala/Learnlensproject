@@ -1,12 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
-import { Navigation } from './components/Navigation';
-import { HeroSection } from './components/HeroSection';
-import { FeaturesSection } from './components/FeaturesSection';
-import { HowItWorksSection } from './components/HowItWorksSection';
-import { SampleVideosSection } from './components/SampleVideosSection';
-import { UploadSection } from './components/UploadSection';
+"use client";
 
-export default function App() {
+import { useState, useEffect, useRef } from 'react';
+import { Navigation } from '@/components/Navigation';
+import { HeroSection } from '@/components/HeroSection';
+import { FeaturesSection } from '@/components/FeaturesSection';
+import { HowItWorksSection } from '@/components/HowItWorksSection';
+import { SampleVideosSection } from '@/components/SampleVideosSection';
+import { UploadSection } from '@/components/UploadSection';
+
+export default function Page() {
   const [currentSection, setCurrentSection] = useState('home');
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
@@ -42,7 +44,7 @@ export default function App() {
     if (element) {
       const yOffset = -80; // Account for fixed nav height
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      
+
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
@@ -50,11 +52,11 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation currentSection={currentSection} onNavigate={scrollToSection} />
-      
+
       <main>
         {/* Home Section */}
         <div
-          ref={(el) => (sectionRefs.current['home'] = el)}
+          ref={(el) => { sectionRefs.current['home'] = el; }}
           data-section="home"
           id="home"
         >
@@ -64,7 +66,7 @@ export default function App() {
 
         {/* How It Works Section */}
         <div
-          ref={(el) => (sectionRefs.current['how-it-works'] = el)}
+          ref={(el) => { sectionRefs.current['how-it-works'] = el; }}
           data-section="how-it-works"
           id="how-it-works"
         >
@@ -74,7 +76,7 @@ export default function App() {
 
         {/* Upload Section */}
         <div
-          ref={(el) => (sectionRefs.current['upload'] = el)}
+          ref={(el) => { sectionRefs.current['upload'] = el; }}
           data-section="upload"
           id="upload"
         >

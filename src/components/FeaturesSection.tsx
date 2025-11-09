@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'motion/react';
 import { FileText, Video, BarChart3, Zap, BookOpen, CheckCircle } from 'lucide-react';
 import { Card } from './ui/card';

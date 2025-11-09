@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { X, Check, Crown, Zap } from 'lucide-react';

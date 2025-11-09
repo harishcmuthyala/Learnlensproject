@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'motion/react';
 import { Card } from './ui/card';
 import { Play, Clock, BookOpen } from 'lucide-react';

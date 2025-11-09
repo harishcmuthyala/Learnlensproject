@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'motion/react';
 import { Button } from './ui/button';
 import { Play, FileText, Video, ArrowRight } from 'lucide-react';

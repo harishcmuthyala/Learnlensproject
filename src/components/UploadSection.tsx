@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Upload, FileText, X, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
@@ -247,7 +249,7 @@ export function UploadSection({ onComplete }: UploadSectionProps) {
             </motion.div>
           )}
 
-          {(uploadState === 'uploading' || uploadState === 'processing') && uploadedFile && (
+          {(uploadState === 'uploading' || uploadState === 'analyzing' || uploadState === 'generating') && uploadedFile && (
             <motion.div
               key="processing"
               initial={{ opacity: 0, scale: 0.95 }}

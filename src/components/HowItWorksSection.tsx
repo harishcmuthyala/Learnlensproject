@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'motion/react';
 import { Upload, Sparkles, PlayCircle, ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';

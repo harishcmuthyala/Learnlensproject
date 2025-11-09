@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Play, Lock, CheckCircle, Loader2, Crown } from 'lucide-react';
