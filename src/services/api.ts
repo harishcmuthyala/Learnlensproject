@@ -4,14 +4,18 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK === 'true';
 
 class ApiService {
+  private documentTitles = new Map<string, string>();
   async uploadDocument(file: File): Promise<UploadResponse> {
     if (USE_MOCK) {
       await new Promise(resolve => setTimeout(resolve, 1000));
+      const documentId = 'demo-doc-123';
+      const title = file.name.replace(/\.[^/.]+$/, '');
+      this.documentTitles.set(documentId, title);
       return {
-        documentId: 'demo-doc-123',
+        documentId,
         outline: {
           id: 'demo-outline-123',
-          title: file.name.replace(/\.[^/.]+$/, ''),
+          title,
           topics: [
             { id: 'topic-1', title: 'Introduction', description: 'Overview and basics', order: 0, isPremium: false },
             { id: 'topic-2', title: 'Core Concepts', description: 'Main principles', order: 1, isPremium: true },
@@ -39,9 +43,10 @@ class ApiService {
 
   async getDocumentStatus(documentId: string): Promise<DocumentOutline> {
     if (USE_MOCK) {
+      const title = this.documentTitles.get(documentId) || 'Sample Document';
       return {
         id: 'video-outline-123',
-        title: '',
+        title,
         topics: [
           { id: 'topic-1', title: 'Introduction', description: 'Overview and basics', order: 0, isPremium: false, 
             video: { id: 'video-1', status: 'ready', url: 'https://piusai-demos.s3.us-east-1.amazonaws.com/tree.mp4', duration: 180, thumbnail: 'https://i.imgur.com/Zq4VYhF.jpg' } },
