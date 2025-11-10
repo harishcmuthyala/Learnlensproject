@@ -40,8 +40,8 @@ class ApiService {
   async getDocumentStatus(documentId: string): Promise<DocumentOutline> {
     if (USE_MOCK) {
       return {
-        id: 'demo-outline-123',
-        title: 'Demo Document',
+        id: 'video-outline-123',
+        title: '',
         topics: [
           { id: 'topic-1', title: 'Introduction', description: 'Overview and basics', order: 0, isPremium: false, 
             video: { id: 'video-1', status: 'ready', url: 'https://piusai-demos.s3.us-east-1.amazonaws.com/tree.mp4', duration: 180, thumbnail: 'https://i.imgur.com/Zq4VYhF.jpg' } },
