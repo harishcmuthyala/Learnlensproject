@@ -73,7 +73,6 @@ export function UploadSection({ onComplete }: UploadSectionProps) {
       setTimeout(() => {
         setUploadState('complete');
         setDocumentId(response.documentId);
-        onComplete?.();
       }, 500);
       
     } catch (error) {

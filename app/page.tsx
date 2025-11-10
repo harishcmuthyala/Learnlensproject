@@ -80,7 +80,7 @@ export default function Page() {
           data-section="upload"
           id="upload"
         >
-          <UploadSection onComplete={() => scrollToSection('home')} />
+          <UploadSection />
         </div>
       </main>
 
